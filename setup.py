@@ -5,10 +5,10 @@ with open("README.md", "r") as f:
 
 setuptools.setup(
     name="flyingsnake",
-    version="1.0b1",
+    version="1.0b2",
     author="Stefano Pigozzi",
     author_email="ste.pigozzi@gmail.com",
-    description="A Terraria world screenshot creator",
+    description="A Terraria world map creator",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/Steffo99/flyingsnake",
