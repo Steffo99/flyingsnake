@@ -4,3 +4,4 @@ settings.xml
 *.egg-info/
 dist/
 **/__pycache__/
+setup/
