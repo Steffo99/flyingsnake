@@ -1,0 +1,6 @@
+*.wld
+.idea/
+settings.xml
+*.egg-info/
+dist/
+**/__pycache__/
