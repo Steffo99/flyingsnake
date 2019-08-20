@@ -64,7 +64,7 @@ def flyingsnake(input_file: str,
                 if tile.wall:
                     draw.point((x, y), tuple(colors["Walls"][str(tile.wall.type.value)]))
             if not x % 100:
-                c.echo(f"{x} / {world.size.x} columns done")
+                c.echo(f"{x} / {world.size.x} rows done")
         del draw
         to_merge.append(walls)
 
@@ -83,7 +83,7 @@ def flyingsnake(input_file: str,
                     elif tile.liquid.type == li.tiles.LiquidType.HONEY:
                         draw.point((x, y), tuple(colors["Globals"]["Honey"]))
             if not x % 100:
-                c.echo(f"{x} / {world.size.x} columns done")
+                c.echo(f"{x} / {world.size.x} rows done")
         del draw
         to_merge.append(liquids)
 
@@ -97,7 +97,7 @@ def flyingsnake(input_file: str,
                 if tile.block:
                     draw.point((x, y), tuple(colors["Blocks"][str(tile.block.type.value)]))
             if not x % 100:
-                c.echo(f"{x} / {world.size.x} columns done")
+                c.echo(f"{x} / {world.size.x} rows done")
         del draw
         to_merge.append(blocks)
 
@@ -118,7 +118,7 @@ def flyingsnake(input_file: str,
                     if tile.wiring.yellow:
                         draw.point((x, y), tuple(colors["Globals"]["Wire3"]))
             if not x % 100:
-                c.echo(f"{x} / {world.size.x} columns done")
+                c.echo(f"{x} / {world.size.x} rows done")
         del draw
         to_merge.append(wires)
 
