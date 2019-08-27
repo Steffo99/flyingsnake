@@ -5,3 +5,4 @@ settings.xml
 dist/
 **/__pycache__/
 setup/
+sample_world/

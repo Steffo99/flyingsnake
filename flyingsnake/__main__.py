@@ -11,15 +11,15 @@ from .default_colors import DEFAULT_COLORS
 @c.option("-c", "--colors", "colors_file",
           help="The json file to get the tile colors from.", type=c.Path(exists=True))
 @c.option("--background/--no-background", "draw_background",
-          help="Draw the sky/underground/cavern wall beneath the tiles.", default=True)
+          help="Draw the sky/underground/cavern wall beneath the tiles.", default=None)
 @c.option("--blocks/--no-blocks", "draw_blocks",
-          help="Draw the blocks present in the world.", default=True)
+          help="Draw the blocks present in the world.", default=None)
 @c.option("--walls/--no-walls", "draw_walls",
-          help="Draw the walls present in the world.", default=True)
+          help="Draw the walls present in the world.", default=None)
 @c.option("--liquids/--no-liquids", "draw_liquids",
-          help="Draw the liquids present in the world.", default=True)
+          help="Draw the liquids present in the world.", default=None)
 @c.option("--wires/--no-wires", "draw_wires",
-          help="Draw the liquids present in the world.", default=True)
+          help="Draw the liquids present in the world.", default=None)
 def flyingsnake(input_file: str,
                 output_file: str,
                 colors_file: str,
@@ -28,12 +28,66 @@ def flyingsnake(input_file: str,
                 draw_walls: bool,
                 draw_liquids: bool,
                 draw_wires: bool):
+    # If at least a draw flag is set to True, default everything else to False
+    if draw_background is True \
+       or draw_blocks is True \
+       or draw_walls is True \
+       or draw_liquids is True \
+       or draw_wires is True:
+        draw_background = False if (draw_background is None or draw_background is False) else True
+        draw_blocks = False if (draw_blocks is None or draw_blocks is False) else True
+        draw_walls = False if (draw_walls is None or draw_walls is False) else True
+        draw_liquids = False if (draw_liquids is None or draw_liquids is False) else True
+        draw_wires = False if (draw_wires is None or draw_wires is False) else True
+
+    # If at least a draw flag is set to False, default everything else to True
+    if draw_background is False \
+       or draw_blocks is False \
+       or draw_walls is False \
+       or draw_liquids is False \
+       or draw_wires is False:
+        draw_background = True if (draw_background is None or draw_background is True) else False
+        draw_blocks = True if (draw_blocks is None or draw_blocks is True) else False
+        draw_walls = True if (draw_walls is None or draw_walls is True) else False
+        draw_liquids = True if (draw_liquids is None or draw_liquids is True) else False
+        draw_wires = True if (draw_wires is None or draw_wires is True) else False
+
+    # If no flags are set, draw everything
+    if draw_background is None \
+       and draw_blocks is None \
+       and draw_walls is None \
+       and draw_liquids is None \
+       and draw_wires is None:
+        draw_background = True
+        draw_blocks = True
+        draw_walls = True
+        draw_liquids = True
+        draw_wires = True
+
+    # If all layers are disabled, raise an Error
+    if draw_background is False \
+       and draw_blocks is False \
+       and draw_walls is False \
+       and draw_liquids is False \
+       and draw_wires is False:
+        raise c.ClickException("All layers are disabled, nothing to render")
+
+    c.echo(f"Draw background layer: {draw_background}")
+    c.echo(f"Draw blocks layer: {draw_blocks}")
+    c.echo(f"Draw walls layer: {draw_walls}")
+    c.echo(f"Draw liquids layer: {draw_liquids}")
+    c.echo(f"Draw wires layer: {draw_wires}")
+    if colors_file:
+        c.echo(f"Colors: from {colors_file}")
+    else:
+        c.echo("Colors: TEdit defaults")
+    c.echo("")
+
     if colors_file:
         c.echo("Reading colors...")
         with open(colors_file) as file:
             colors = json.load(file)
     else:
-        c.echo("No colors file specified, using default Terraria colors.")
         colors = DEFAULT_COLORS
 
     to_merge = []
@@ -122,12 +176,12 @@ def flyingsnake(input_file: str,
         del draw
         to_merge.append(wires)
 
-    c.echo("Merging images...")
+    c.echo("Merging layers...")
     final = Image.new("RGBA", (world.size.x, world.size.y))
     while to_merge:
         final = Image.alpha_composite(final, to_merge.pop(0))
 
-    c.echo("Saving file...")
+    c.echo("Saving image...")
     final.save(output_file)
 
     c.echo("Done!")
