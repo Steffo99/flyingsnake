@@ -1,6 +1,6 @@
 # ![](https://gamepedia.cursecdn.com/terraria_gamepedia/8/82/Flying_Snake.png?version=2b0351f579d721166af80a12d2c2e325) `flyingsnake` [![](https://img.shields.io/pypi/v/flyingsnake)](https://pypi.org/project/flyingsnake/)
 
-Generate Terraria world maps with this easy to use command line utility!
+Render Terraria world maps with this easy to use command line utility!
 
 ![A world map](https://i.imgur.com/HtNEIKw.png)
 
@@ -16,7 +16,7 @@ To use `flyingsnake`, you need [Python 3.7 or higher](https://www.python.org/dow
 
 Open either **Windows PowerShell** (Windows 10) or the **Command Prompt** (other Windows versions) and enter:
 
-```
+```batch
 pip install flyingsnake
 ```
 
@@ -24,15 +24,15 @@ pip install flyingsnake
 
 Enter this in your terminal:
 
-```
+```bash
 python3.7 -m pip install flyingsnake
 ```
 
 ## Usage
 
-To create a basic world map named `Output.png` from the `Small_Example.wld` file present in your current working directory, run in your terminal:
+To create a world map image named `Output.png` from the `Small_Example.wld` file present in your current working directory, run in your terminal:
 
-```
+```bash
 flyingsnake Small_Example.wld Output.png
 ```
 
