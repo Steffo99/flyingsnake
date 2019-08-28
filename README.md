@@ -6,13 +6,23 @@ Generate Terraria world maps with this easy to use command line utility!
 
 ## Requirements
 
-To use `flyingsnake`, you need [Python 3.7 or higher](https://www.python.org/downloads/) installed on your machine.
+To use `flyingsnake`, you need [Python 3.7 or higher](https://www.python.org/downloads/) installed on your machine and inside your PATH.
 
 ## Installing
 
 `flyingsnake` is available on PyPI, so you can download it through `pip`. 
 
-Just enter this in your terminal:
+### Windows
+
+Open either **Windows PowerShell** (Windows 10) or the **Command Prompt** (other Windows versions) and enter:
+
+```
+pip install flyingsnake
+```
+
+### Linux
+
+Enter this in your terminal:
 
 ```
 python3.7 -m pip install flyingsnake
