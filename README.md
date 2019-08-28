@@ -15,7 +15,7 @@ To use `flyingsnake`, you need [Python 3.7 or higher](https://www.python.org/dow
 Just enter this in your terminal:
 
 ```
-pip install flyingsnake
+python3.7 -m pip install flyingsnake
 ```
 
 ## Usage
@@ -41,7 +41,7 @@ In order, those are:
 
 The background layer is made by coloring the Overworld, the Underground and the Caverns their respective background color.
 
-It can be selected with the `--background` flag, or turned off with the `--no-background` flag.
+It can be selected exclusively with the `--background` flag, or turned off with the `--no-background` flag.
 
 ![The background layer](https://i.imgur.com/69qRLZX.png)
 
@@ -49,7 +49,7 @@ It can be selected with the `--background` flag, or turned off with the `--no-ba
 
 The walls layer contains the colors of the walls present in the world.
 
-It can be selected with the `--walls` flag, or turned off with the `--no-walls` flag.
+It can be selected exclusively with the `--walls` flag, or turned off with the `--no-walls` flag.
 
 ![The wall layer](https://i.imgur.com/Grkq5PQ.png)
 
@@ -57,7 +57,7 @@ It can be selected with the `--walls` flag, or turned off with the `--no-walls` 
 
 The liquids layer contains the colors of the liquids present in the world (water, lava, honey...)
 
-It can be selected with the `--liquids` flag, or turned off with the `--no-liquids` flag.
+It can be selected exclusively with the `--liquids` flag, or turned off with the `--no-liquids` flag.
 
 ![The liquids layer](https://i.imgur.com/Pifjb4D.png)
 
@@ -65,7 +65,7 @@ It can be selected with the `--liquids` flag, or turned off with the `--no-liqui
 
 The blocks layer contains the colors of the blocks present in the world.
 
-It can be selected with the `--blocks` flag, or turned off with the `--no-blocks` flag.
+It can be selected exclusively with the `--blocks` flag, or turned off with the `--no-blocks` flag.
 
 ![The blocks layer](https://i.imgur.com/E05kgOA.png)
 
@@ -73,7 +73,7 @@ It can be selected with the `--blocks` flag, or turned off with the `--no-blocks
 
 The wires layer is a semi-transparent overlay of the wires present in the world.
 
-It can be selected with the `--wires` flag, or turned off with the `--no-wires` flag.
+It can be selected exclusively with the `--wires` flag, or turned off with the `--no-wires` flag.
 
 ![The wires layer](https://i.imgur.com/XDLRCAE.png)
 
@@ -92,4 +92,7 @@ That means you have to publish under the same license the source code of any pro
 
 ## See also
 
-- [lihzahrd](https://github.com/Steffo99/lihzahrd), the package used to make this generator.
+If you are interested in `flyingsnake`, you might be interested in these other programs too:
+
+- [lihzahrd](https://github.com/Steffo99/lihzahrd), the package used to make this generator
+- [TEdit](https://github.com/TEdit/Terraria-Map-Editor), the Terraria map editor from which this package gets the default colors
