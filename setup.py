@@ -20,9 +20,15 @@ setuptools.setup(
     ],
     python_requires=">=3.7",
     classifiers=[
-        "Development Status :: 4 - Beta",
+        "Development Status :: 5 - Production/Stable",
+        "Environment :: Console",
         "Operating System :: OS Independent",
-        "Programming Language :: Python :: 3.7"
+        "Programming Language :: Python :: 3.7",
+        "License :: OSI Approved :: GNU Affero General Public License v3",
+        "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
+        "Topic :: Games/Entertainment",
+        "Topic :: Multimedia :: Graphics",
+        "Typing :: Typed"
     ],
     entry_points={
         "console_scripts": [
