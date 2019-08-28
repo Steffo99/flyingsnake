@@ -23,7 +23,7 @@ python3.7 -m pip install flyingsnake
 To create a basic world map named `Output.png` from the `Small_Example.wld` file present in your current working directory, run in your terminal:
 
 ```
-python3.7 -m flyingsnake Small_Example.wld Output.png
+flyingsnake Small_Example.wld Output.png
 ```
 
 ### Layers
@@ -43,7 +43,7 @@ The background layer is made by coloring the Overworld, the Underground and the 
 
 It can be selected exclusively with the `--background` flag, or turned off with the `--no-background` flag.
 
-![The background layer](https://i.imgur.com/69qRLZX.png)
+![flyingsnake Small_Example.wld Output.png --background](https://i.imgur.com/69qRLZX.png)
 
 #### Walls
 
@@ -54,7 +54,7 @@ It can be selected exclusively with the `--walls` flag, or turned off with the `
 If the walls are painted, they will be colored with the paint color.
 You can turn off paint colors with the `--no-paints` flag.
 
-![The wall layer](https://i.imgur.com/Grkq5PQ.png)
+![flyingsnake Small_Example.wld Output.png --walls](https://i.imgur.com/Grkq5PQ.png)
 
 #### Liquids
 
@@ -62,7 +62,7 @@ The liquids layer contains the colors of the liquids present in the world (water
 
 It can be selected exclusively with the `--liquids` flag, or turned off with the `--no-liquids` flag.
 
-![The liquids layer](https://i.imgur.com/Pifjb4D.png)
+![flyingsnake Small_Example.wld Output.png --liquids](https://i.imgur.com/Pifjb4D.png)
 
 #### Blocks
 
@@ -73,7 +73,7 @@ It can be selected exclusively with the `--blocks` flag, or turned off with the 
 If the blocks are painted, they will be colored with the paint color.
 You can turn off paint colors with the `--no-paints` flag.
 
-![The blocks layer](https://i.imgur.com/E05kgOA.png)
+![flyingsnake Small_Example.wld Output.png --blocks](https://i.imgur.com/E05kgOA.png)
 
 #### Wires
 
@@ -81,7 +81,7 @@ The wires layer is a semi-transparent overlay of the wires present in the world.
 
 It can be selected exclusively with the `--wires` flag, or turned off with the `--no-wires` flag.
 
-![The wires layer](https://i.imgur.com/XDLRCAE.png)
+![flyingsnake Small_Example.wld Output.png --wires](https://i.imgur.com/XDLRCAE.png)
 
 ### Custom colors
 

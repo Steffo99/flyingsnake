@@ -23,5 +23,10 @@ setuptools.setup(
         "Development Status :: 4 - Beta",
         "Operating System :: OS Independent",
         "Programming Language :: Python :: 3.7"
-    ]
+    ],
+    entry_points={
+        "console_scripts": [
+            "flyingsnake = flyingsnake.__main__:flyingsnake"
+        ]
+    }
 )
