@@ -2,7 +2,7 @@
 
 Render Terraria world maps with this easy to use command line utility!
 
-![A world map](https://i.imgur.com/HtNEIKw.png)
+![flyingsnake Small_Example.wld Output.png](https://i.imgur.com/HtNEIKw.png)
 
 ## Requirements
 
