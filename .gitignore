@@ -6,3 +6,4 @@ dist/
 **/__pycache__/
 setup/
 sample_world/
+build/
