@@ -8,7 +8,7 @@ setuptools.setup(
     version="1.0b2",
     author="Stefano Pigozzi",
     author_email="ste.pigozzi@gmail.com",
-    description="A Terraria world map creator",
+    description="A Terraria world map renderer",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/Steffo99/flyingsnake",
@@ -23,7 +23,5 @@ setuptools.setup(
         "Development Status :: 4 - Beta",
         "Operating System :: OS Independent",
         "Programming Language :: Python :: 3.7"
-    ],
-    include_package_data=True,
-    zip_safe=False,
+    ]
 )
