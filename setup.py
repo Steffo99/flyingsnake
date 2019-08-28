@@ -15,7 +15,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     install_requires=[
         "click>=7.0",
-        "lihzahrd>=1.0b1",
+        "lihzahrd>=1.0b6",
         "Pillow>=6.1.0"
     ],
     python_requires=">=3.7",
