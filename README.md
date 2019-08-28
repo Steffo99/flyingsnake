@@ -51,6 +51,9 @@ The walls layer contains the colors of the walls present in the world.
 
 It can be selected exclusively with the `--walls` flag, or turned off with the `--no-walls` flag.
 
+If the walls are painted, they will be colored with the paint color.
+You can turn off paint colors with the `--no-paints` flag.
+
 ![The wall layer](https://i.imgur.com/Grkq5PQ.png)
 
 #### Liquids
@@ -66,6 +69,9 @@ It can be selected exclusively with the `--liquids` flag, or turned off with the
 The blocks layer contains the colors of the blocks present in the world.
 
 It can be selected exclusively with the `--blocks` flag, or turned off with the `--no-blocks` flag.
+
+If the blocks are painted, they will be colored with the paint color.
+You can turn off paint colors with the `--no-paints` flag.
 
 ![The blocks layer](https://i.imgur.com/E05kgOA.png)
 

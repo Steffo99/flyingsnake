@@ -20,6 +20,8 @@ from .default_colors import DEFAULT_COLORS
           help="Draw the liquids present in the world.", default=None)
 @c.option("--wires/--no-wires", "draw_wires",
           help="Draw the liquids present in the world.", default=None)
+@c.option("--paint/--no-paint", "draw_paint",
+          help="Draw painted blocks with the paint color overlayed on them.", default=True)
 def flyingsnake(input_file: str,
                 output_file: str,
                 colors_file: str,
@@ -27,7 +29,8 @@ def flyingsnake(input_file: str,
                 draw_blocks: bool,
                 draw_walls: bool,
                 draw_liquids: bool,
-                draw_wires: bool):
+                draw_wires: bool,
+                draw_paint: bool):
     # If at least a draw flag is set to True, default everything else to False
     if draw_background is True \
        or draw_blocks is True \
@@ -77,6 +80,7 @@ def flyingsnake(input_file: str,
     c.echo(f"Draw walls layer: {draw_walls}")
     c.echo(f"Draw liquids layer: {draw_liquids}")
     c.echo(f"Draw wires layer: {draw_wires}")
+    c.echo(f"Draw paints: {draw_paint}")
     if colors_file:
         c.echo(f"Colors: from {colors_file}")
     else:
@@ -116,7 +120,11 @@ def flyingsnake(input_file: str,
             for y in range(world.size.y):
                 tile = world.tiles[x, y]
                 if tile.wall:
-                    draw.point((x, y), tuple(colors["Walls"][str(tile.wall.type.value)]))
+                    if draw_paint and tile.wall.paint:
+                        color = tuple(colors["Paints"][str(tile.wall.paint)])
+                    else:
+                        color = tuple(colors["Walls"][str(tile.wall.type.value)])
+                    draw.point((x, y), color)
             if not x % 100:
                 c.echo(f"{x} / {world.size.x} rows done")
         del draw
@@ -149,7 +157,11 @@ def flyingsnake(input_file: str,
             for y in range(world.size.y):
                 tile = world.tiles[x, y]
                 if tile.block:
-                    draw.point((x, y), tuple(colors["Blocks"][str(tile.block.type.value)]))
+                    if draw_paint and tile.block.paint:
+                        color = tuple(colors["Paints"][str(tile.block.paint)])
+                    else:
+                        color = tuple(colors["Blocks"][str(tile.block.type.value)])
+                    draw.point((x, y), color)
             if not x % 100:
                 c.echo(f"{x} / {world.size.x} rows done")
         del draw
