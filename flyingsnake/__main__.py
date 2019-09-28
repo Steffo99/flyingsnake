@@ -116,7 +116,7 @@ def flyingsnake(input_file: str,
         c.echo("Drawing walls...")
         walls = Image.new("RGBA", (world.size.x, world.size.y))
         draw = ImageDraw.Draw(walls)
-        with click.progressbar(world.tiles, length = world.size) as bar:
+        with c.progressbar(world.tiles, length = world.size) as bar:
             for tile in bar:
                 if tile.wall:
                     if draw_paint and tile.wall.paint:
@@ -132,7 +132,7 @@ def flyingsnake(input_file: str,
         c.echo("Drawing liquids...")
         liquids = Image.new("RGBA", (world.size.x, world.size.y))
         draw = ImageDraw.Draw(liquids)
-        with click.progressbar(world.tiles, length = world.size) as bar:
+        with c.progressbar(world.tiles, length = world.size) as bar:
             for tile in bar:
                 if tile.liquid:
                     if tile.liquid.type == li.tiles.LiquidType.WATER:
@@ -149,7 +149,7 @@ def flyingsnake(input_file: str,
         c.echo("Drawing blocks...")
         blocks = Image.new("RGBA", (world.size.x, world.size.y))
         draw = ImageDraw.Draw(blocks)
-        with click.progressbar(world.tiles, length = world.size) as bar:
+        with c.progressbar(world.tiles, length = world.size) as bar:
             for tile in bar:
                 if tile.block:
                     if draw_paint and tile.block.paint:
