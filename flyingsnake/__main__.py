@@ -119,6 +119,7 @@ def flyingsnake(input_file: str,
         with c.progressbar(world.tiles, length = world.size) as bar:
             for x in range(world.size.x):
                 for y in range(world.size.y):
+                    tile = bar[x,y]
                     if tile.wall:
                         if draw_paint and tile.wall.paint:
                             color = tuple(colors["Paints"][str(tile.wall.paint)])
@@ -135,6 +136,7 @@ def flyingsnake(input_file: str,
         with c.progressbar(world.tiles, length = world.size) as bar:
             for x in range(world.size.x):
                 for y in range(world.size.y):
+                    tile = bar[x,y]
                     if tile.liquid:
                         if tile.liquid.type == li.tiles.LiquidType.WATER:
                             draw.point((x, y), tuple(colors["Globals"]["Water"]))
@@ -152,6 +154,7 @@ def flyingsnake(input_file: str,
         with c.progressbar(world.tiles, length = world.size) as bar:
             for x in range(world.size.x):
                 for y in range(world.size.y):
+                    tile = bar[x,y]
                     if tile.block:
                         if draw_paint and tile.block.paint:
                             color = tuple(colors["Paints"][str(tile.block.paint)])
@@ -168,6 +171,7 @@ def flyingsnake(input_file: str,
         with c.progressbar(world.tiles, length = world.size) as bar:
             for x in range(world.size.x):
                 for y in range(world.size.y):
+                    tile = bar[x,y]
                     if tile.wiring:
                         if tile.wiring.red:
                             draw.point((x, y), tuple(colors["Globals"]["Wire"]))
