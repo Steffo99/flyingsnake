@@ -117,14 +117,14 @@ def flyingsnake(input_file: str,
         walls = Image.new("RGBA", (world.size.x, world.size.y))
         draw = ImageDraw.Draw(walls)
         with c.progressbar(world.tiles, length = world.size) as bar:
-            for tile in bar:
-                if tile.wall:
-                    if draw_paint and tile.wall.paint:
-                        color = tuple(colors["Paints"][str(tile.wall.paint)])
-                    else:
-                        color = tuple(colors["Walls"][str(tile.wall.type.value)])
-                    draw.point((x, y), color)
-                
+            for x in range(world.size.x):
+                for y in range(world.size.y):
+                    if tile.wall:
+                        if draw_paint and tile.wall.paint:
+                            color = tuple(colors["Paints"][str(tile.wall.paint)])
+                        else:
+                            color = tuple(colors["Walls"][str(tile.wall.type.value)])
+                        draw.point((x, y), color)
         del draw
         to_merge.append(walls)
 
@@ -133,15 +133,15 @@ def flyingsnake(input_file: str,
         liquids = Image.new("RGBA", (world.size.x, world.size.y))
         draw = ImageDraw.Draw(liquids)
         with c.progressbar(world.tiles, length = world.size) as bar:
-            for tile in bar:
-                if tile.liquid:
-                    if tile.liquid.type == li.tiles.LiquidType.WATER:
-                        draw.point((x, y), tuple(colors["Globals"]["Water"]))
-                    elif tile.liquid.type == li.tiles.LiquidType.LAVA:
-                        draw.point((x, y), tuple(colors["Globals"]["Lava"]))
-                    elif tile.liquid.type == li.tiles.LiquidType.HONEY:
-                        draw.point((x, y), tuple(colors["Globals"]["Honey"]))
-
+            for x in range(world.size.x):
+                for y in range(world.size.y):
+                    if tile.liquid:
+                        if tile.liquid.type == li.tiles.LiquidType.WATER:
+                            draw.point((x, y), tuple(colors["Globals"]["Water"]))
+                        elif tile.liquid.type == li.tiles.LiquidType.LAVA:
+                            draw.point((x, y), tuple(colors["Globals"]["Lava"]))
+                        elif tile.liquid.type == li.tiles.LiquidType.HONEY:
+                            draw.point((x, y), tuple(colors["Globals"]["Honey"]))
         del draw
         to_merge.append(liquids)
 
@@ -150,15 +150,14 @@ def flyingsnake(input_file: str,
         blocks = Image.new("RGBA", (world.size.x, world.size.y))
         draw = ImageDraw.Draw(blocks)
         with c.progressbar(world.tiles, length = world.size) as bar:
-            for tile in bar:
-                if tile.block:
-                    if draw_paint and tile.block.paint:
-                        color = tuple(colors["Paints"][str(tile.block.paint)])
-                    else:
-                        color = tuple(colors["Blocks"][str(tile.block.type.value)])
-                    draw.point((x, y), color)
-                    
-
+            for x in range(world.size.x):
+                for y in range(world.size.y):
+                    if tile.block:
+                        if draw_paint and tile.block.paint:
+                            color = tuple(colors["Paints"][str(tile.block.paint)])
+                        else:
+                            color = tuple(colors["Blocks"][str(tile.block.type.value)])
+                        draw.point((x, y), color)
         del draw
         to_merge.append(blocks)
 
@@ -167,17 +166,17 @@ def flyingsnake(input_file: str,
         wires = Image.new("RGBA", (world.size.x, world.size.y))
         draw = ImageDraw.Draw(wires)
         with c.progressbar(world.tiles, length = world.size) as bar:
-            for tile in bar:
-                if tile.wiring:
-                    if tile.wiring.red:
-                        draw.point((x, y), tuple(colors["Globals"]["Wire"]))
-                    if tile.wiring.blue:
-                        draw.point((x, y), tuple(colors["Globals"]["Wire1"]))
-                    if tile.wiring.green:
-                        draw.point((x, y), tuple(colors["Globals"]["Wire2"]))
-                    if tile.wiring.yellow:
-                        draw.point((x, y), tuple(colors["Globals"]["Wire3"]))
-
+            for x in range(world.size.x):
+                for y in range(world.size.y):
+                    if tile.wiring:
+                        if tile.wiring.red:
+                            draw.point((x, y), tuple(colors["Globals"]["Wire"]))
+                        if tile.wiring.blue:
+                            draw.point((x, y), tuple(colors["Globals"]["Wire1"]))
+                        if tile.wiring.green:
+                            draw.point((x, y), tuple(colors["Globals"]["Wire2"]))
+                        if tile.wiring.yellow:
+                            draw.point((x, y), tuple(colors["Globals"]["Wire3"]))
         del draw
         to_merge.append(wires)
 
