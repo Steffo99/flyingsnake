@@ -13,14 +13,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+      lfs: true
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v1
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Download Git LFS files
-      run: |
-        git lfs install
-        git pull
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
