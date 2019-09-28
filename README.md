@@ -2,7 +2,7 @@
 
 Render Terraria world maps with this easy to use command line utility!
 
-![A world map](https://i.imgur.com/HtNEIKw.png)
+![flyingsnake Small_Example.wld Output.png](https://i.imgur.com/HtNEIKw.png)
 
 ## Requirements
 
@@ -17,7 +17,7 @@ To use `flyingsnake`, you need [Python 3.7 or higher](https://www.python.org/dow
 Open either **Windows PowerShell** (Windows 10) or the **Command Prompt** (other Windows versions) and enter:
 
 ```batch
-pip install flyingsnake
+pip install flyingsnake --upgrade
 ```
 
 ### Linux
@@ -25,7 +25,7 @@ pip install flyingsnake
 Enter this in your terminal:
 
 ```bash
-python3.7 -m pip install flyingsnake
+python3.7 -m pip install flyingsnake --upgrade
 ```
 
 ## Usage
@@ -62,7 +62,7 @@ The walls layer contains the colors of the walls present in the world.
 It can be selected exclusively with the `--walls` flag, or turned off with the `--no-walls` flag.
 
 If the walls are painted, they will be colored with the paint color.
-You can turn off paint colors with the `--no-paints` flag.
+You can turn off paint colors with the `--no-paints` option.
 
 ![flyingsnake Small_Example.wld Output.png --walls](https://i.imgur.com/Grkq5PQ.png)
 
@@ -81,7 +81,7 @@ The blocks layer contains the colors of the blocks present in the world.
 It can be selected exclusively with the `--blocks` flag, or turned off with the `--no-blocks` flag.
 
 If the blocks are painted, they will be colored with the paint color.
-You can turn off paint colors with the `--no-paints` flag.
+You can turn off paint colors with the `--no-paints` option.
 
 ![flyingsnake Small_Example.wld Output.png --blocks](https://i.imgur.com/E05kgOA.png)
 
@@ -95,20 +95,20 @@ It can be selected exclusively with the `--wires` flag, or turned off with the `
 
 ### Custom colors
 
-Different colors can be specified by passing the `--colors file.json` option to the command.
+By default, `flyingsnake` uses the colors defined in the [TEdit settings file](https://github.com/TEdit/Terraria-Map-Editor/blob/master/TEditXna/settings.xml).
 
-You can see an example color file [here](https://github.com/Steffo99/flyingsnake/tree/master/flyingsnake/example_colors.json); the colors are in RGBA format, and go from 0 to 255.
+However, you can use different colors by passing the `--colors colors.json` option to the command.
 
-If no custom colors are passed, the script will use the default [TEdit](https://github.com/TEdit/Terraria-Map-Editor) colors (defined in settings.xml).
+You can see an example colors file [here](https://github.com/Steffo99/flyingsnake/tree/master/flyingsnake/example_colors.json); the colors are in RGBA format, and go from 0 to 255.
 
 ## License
 
 `flyingsnake` is licensed under the [AGPL 3.0](/LICENSE.txt).
-That means you have to publish under the same license the source code of any program you create that uses `flyingsnake`.
+Basically, you're allowed to do whatever you want with this program, but you have to publish all modified code, and it has to be published under the same license.
 
 ## See also
 
 If you are interested in `flyingsnake`, you might be interested in these other programs too:
 
 - [lihzahrd](https://github.com/Steffo99/lihzahrd), the package used to make this generator
-- [TEdit](https://github.com/TEdit/Terraria-Map-Editor), the Terraria map editor from which this package gets the default colors
+- [TEdit](https://github.com/TEdit/Terraria-Map-Editor), the Terraria map editor from which this package gets its default colors
