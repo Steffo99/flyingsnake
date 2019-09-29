@@ -7,3 +7,5 @@ dist/
 setup/
 sample_world/
 build/
+venv/
+.venv/
