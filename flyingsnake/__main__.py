@@ -4,6 +4,19 @@ import json
 from PIL import Image, ImageDraw
 from .default_colors import DEFAULT_COLORS
 
+DEFAULT_REGION_VALUE = 1_000_000
+DEFAULT_COORDS = -1
+
+
+def get_region_size(*, world, min_x, min_y, region_width, region_height):
+    if min_x == DEFAULT_COORDS or min_y == DEFAULT_COORDS:
+        return 0, 0, world.size.x, world.size.y
+    min_x = max(0, min_x)
+    min_y = max(0, min_y)
+    max_x = min(world.size.x, min_x + region_width)
+    max_y = min(world.size.y, min_y + region_height)
+    return min_x, min_y, max_x, max_y
+
 
 @c.command()
 @c.argument("input_file", type=c.Path(exists=True))
@@ -22,6 +35,14 @@ from .default_colors import DEFAULT_COLORS
           help="Draw the liquids present in the world.", default=None)
 @c.option("--paint/--no-paint", "draw_paint",
           help="Draw painted blocks with the paint color overlayed on them.", default=True)
+@c.option("-x", "--x_coord", "min_x",
+          help="Min x coord for custom world rendering", default=DEFAULT_COORDS)
+@c.option("-y", "--y_coord", "min_y",
+          help="Min y coord for custom world rendering", default=DEFAULT_COORDS)
+@c.option("-w", "--region_width", "region_width",
+          help="Width of region for custom world rendering", default=DEFAULT_REGION_VALUE)
+@c.option("-h", "--region_height", "region_height",
+          help="Height of region for custom world rendering", default=DEFAULT_REGION_VALUE)
 def flyingsnake(input_file: str,
                 output_file: str,
                 colors_file: str,
@@ -30,7 +51,11 @@ def flyingsnake(input_file: str,
                 draw_walls: bool,
                 draw_liquids: bool,
                 draw_wires: bool,
-                draw_paint: bool):
+                draw_paint: bool,
+                min_x: int,
+                min_y: int,
+                region_width: int,
+                region_height: int):
     # If at least a draw flag is set to True, default everything else to False
     if draw_background is True \
        or draw_blocks is True \
@@ -98,98 +123,112 @@ def flyingsnake(input_file: str,
 
     c.echo("Parsing world...")
     world = li.World.create_from_file(input_file)
-
+    if (min_x != DEFAULT_COORDS or min_y != DEFAULT_COORDS
+        or region_height != DEFAULT_REGION_VALUE or region_width != DEFAULT_REGION_VALUE):
+        min_x, min_y, max_x, max_y = get_region_size(world=world, min_x=min_x, min_y=min_y,
+                                                     region_width=region_width, region_height=region_height)
+        c.echo(f"Only rendering world coordinates ({min_x}, {min_y}) to ({max_x}, {max_y}")
+    else:
+        min_x, min_y, max_x, max_y = 0, 0, world.size.x, world.size.y
+    width = max_x - min_x
+    height = max_y - min_y
     if draw_background:
         c.echo("Drawing the background...")
-        background = Image.new("RGBA", (world.size.x, world.size.y))
+        background = Image.new("RGBA", (width, height))
         draw = ImageDraw.Draw(background)
-        draw.rectangle(((0, 0), (world.size.x, world.underground_level)), tuple(colors["Globals"]["Sky"]))
-        draw.rectangle(((0, world.underground_level + 1), (world.size.x, world.cavern_level)),
+        draw.rectangle(((0, 0), (width, world.underground_level)), tuple(colors["Globals"]["Sky"]))
+        draw.rectangle(((0, world.underground_level + 1), (width, world.cavern_level)),
                        tuple(colors["Globals"]["Earth"]))
-        draw.rectangle(((0, world.cavern_level + 1), (world.size.x, world.size.y - 192)),
+        draw.rectangle(((0, world.cavern_level + 1), (width, height - 192)),
                        tuple(colors["Globals"]["Rock"]))
-        draw.rectangle(((0, world.size.y - 191), (world.size.x, world.size.y)), tuple(colors["Globals"]["Hell"]))
+        draw.rectangle(((0, height - 191), (width, height)), tuple(colors["Globals"]["Hell"]))
         del draw
         to_merge.append(background)
 
     if draw_walls:
         c.echo("Drawing walls...")
-        walls = Image.new("RGBA", (world.size.x, world.size.y))
+        walls = Image.new("RGBA", (width, height))
         draw = ImageDraw.Draw(walls)
-        for x in range(world.size.x):
-            for y in range(world.size.y):
+        for x in range(min_x, max_x):
+            for y in range(min_y, max_y):
                 tile = world.tiles[x, y]
                 if tile.wall:
                     if draw_paint and tile.wall.paint:
                         color = tuple(colors["Paints"][str(tile.wall.paint)])
                     else:
                         color = tuple(colors["Walls"][str(tile.wall.type.value)])
-                    draw.point((x, y), color)
+                    draw.point((x - min_x, y - min_y), color)
             if not x % 100:
-                c.echo(f"{x} / {world.size.x} rows done")
+                c.echo(f"{x} / {width} rows done")
         del draw
         to_merge.append(walls)
 
     if draw_liquids:
         c.echo("Drawing liquids...")
-        liquids = Image.new("RGBA", (world.size.x, world.size.y))
+        liquids = Image.new("RGBA", (width, height))
         draw = ImageDraw.Draw(liquids)
-        for x in range(world.size.x):
-            for y in range(world.size.y):
+        for x in range(min_x, max_x):
+            for y in range(min_y, max_y):
                 tile = world.tiles[x, y]
                 if tile.liquid:
                     if tile.liquid.type == li.tiles.LiquidType.WATER:
-                        draw.point((x, y), tuple(colors["Globals"]["Water"]))
+                        color = tuple(colors["Globals"]["Water"])
                     elif tile.liquid.type == li.tiles.LiquidType.LAVA:
-                        draw.point((x, y), tuple(colors["Globals"]["Lava"]))
+                        color = tuple(colors["Globals"]["Lava"])
                     elif tile.liquid.type == li.tiles.LiquidType.HONEY:
-                        draw.point((x, y), tuple(colors["Globals"]["Honey"]))
+                        color = tuple(colors["Globals"]["Honey"])
+                    else:
+                        continue
+                    draw.point((x - min_x, y - min_y), color)
             if not x % 100:
-                c.echo(f"{x} / {world.size.x} rows done")
+                c.echo(f"{x} / {width} rows done")
         del draw
         to_merge.append(liquids)
 
     if draw_blocks:
         c.echo("Drawing blocks...")
-        blocks = Image.new("RGBA", (world.size.x, world.size.y))
+        blocks = Image.new("RGBA", (width, height))
         draw = ImageDraw.Draw(blocks)
-        for x in range(world.size.x):
-            for y in range(world.size.y):
+        for x in range(min_x, max_x):
+            for y in range(min_y, max_y):
                 tile = world.tiles[x, y]
                 if tile.block:
                     if draw_paint and tile.block.paint:
                         color = tuple(colors["Paints"][str(tile.block.paint)])
                     else:
                         color = tuple(colors["Blocks"][str(tile.block.type.value)])
-                    draw.point((x, y), color)
+                    draw.point((x - min_x, y - min_y), color)
             if not x % 100:
-                c.echo(f"{x} / {world.size.x} rows done")
+                c.echo(f"{x} / {width} rows done")
         del draw
         to_merge.append(blocks)
 
     if draw_wires:
         c.echo("Drawing wires...")
-        wires = Image.new("RGBA", (world.size.x, world.size.y))
+        wires = Image.new("RGBA", (width, height))
         draw = ImageDraw.Draw(wires)
-        for x in range(world.size.x):
-            for y in range(world.size.y):
+        for x in range(min_x, max_x):
+            for y in range(min_y, max_y):
                 tile = world.tiles[x, y]
                 if tile.wiring:
                     if tile.wiring.red:
-                        draw.point((x, y), tuple(colors["Globals"]["Wire"]))
-                    if tile.wiring.blue:
-                        draw.point((x, y), tuple(colors["Globals"]["Wire1"]))
-                    if tile.wiring.green:
-                        draw.point((x, y), tuple(colors["Globals"]["Wire2"]))
-                    if tile.wiring.yellow:
-                        draw.point((x, y), tuple(colors["Globals"]["Wire3"]))
+                        color = tuple(colors["Globals"]["Wire"])
+                    elif tile.wiring.blue:
+                        color = tuple(colors["Globals"]["Wire1"])
+                    elif tile.wiring.green:
+                        color = tuple(colors["Globals"]["Wire2"])
+                    elif tile.wiring.yellow:
+                        color = tuple(colors["Globals"]["Wire3"])
+                    else:
+                        continue
+                    draw.point((x - min_x, y - min_y), color)
             if not x % 100:
-                c.echo(f"{x} / {world.size.x} rows done")
+                c.echo(f"{x} / {width} rows done")
         del draw
         to_merge.append(wires)
 
     c.echo("Merging layers...")
-    final = Image.new("RGBA", (world.size.x, world.size.y))
+    final = Image.new("RGBA", (width, height))
     while to_merge:
         final = Image.alpha_composite(final, to_merge.pop(0))
 
