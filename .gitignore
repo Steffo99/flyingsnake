@@ -1,4 +1,3 @@
-*.wld
 .idea/
 settings.xml
 *.egg-info/
