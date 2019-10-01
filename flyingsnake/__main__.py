@@ -130,12 +130,22 @@ def flyingsnake(input_file: str,
         c.echo("Drawing the background...")
         background = Image.new("RGBA", (width, height))
         draw = ImageDraw.Draw(background)
-        draw.rectangle(((0, 0), (width, world.underground_level)), tuple(colors["Globals"]["Sky"]))
-        draw.rectangle(((0, world.underground_level + 1), (width, world.cavern_level)),
-                       tuple(colors["Globals"]["Earth"]))
-        draw.rectangle(((0, world.cavern_level + 1), (width, height - 192)),
-                       tuple(colors["Globals"]["Rock"]))
-        draw.rectangle(((0, height - 191), (width, height)), tuple(colors["Globals"]["Hell"]))
+        curr_y = 0
+        if min_y <= world.underground_level:
+            sky_y = min(world.underground_level - min_y, height)
+            draw.rectangle(((0, curr_y), (width, sky_y)), tuple(colors["Globals"]["Sky"]))
+            curr_y = sky_y + 1
+        if max_y > world.underground_level and min_y <= world.cavern_level:
+            earth_y = min(world.cavern_level - min_y, height)
+            draw.rectangle(((0, curr_y), (width, earth_y)), tuple(colors["Globals"]["Earth"]))
+            curr_y = earth_y + 1
+        edge_of_rock = world.size_y - 192
+        if max_y > world.cavern_level and min_y <= edge_of_rock:
+            rock_y = min(edge_of_rock - min_y, height)
+            draw.rectangle(((0, curr_y), (width, edge_of_rock + 1)), tuple(colors["Globals"]["Rock"]))
+            curr_y = rock_y + 1
+        if max_y > edge_of_rock:
+            draw.rectangle(((0, curr_y), (width, height)), tuple(colors["Globals"]["Hell"]))
         del draw
         to_merge.append(background)
 
