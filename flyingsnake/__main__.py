@@ -116,7 +116,7 @@ def flyingsnake(input_file: str,
         c.echo("Drawing walls...")
         walls = Image.new("RGBA", (world.size.x, world.size.y))
         draw = ImageDraw.Draw(walls)
-		i = 0
+	i = 0
         with c.progressbar(max_value = world.size.x*world.size.y) as bar:
             for x in range(world.size.x):
                 for y in range(world.size.y):
@@ -136,7 +136,7 @@ def flyingsnake(input_file: str,
         c.echo("Drawing liquids...")
         liquids = Image.new("RGBA", (world.size.x, world.size.y))
         draw = ImageDraw.Draw(liquids)
-		i=0
+	i=0
         with c.progressbar(max_value = world.size.x*world.size.y) as bar:
             for x in range(world.size.x):
                 for y in range(world.size.y):
@@ -157,7 +157,7 @@ def flyingsnake(input_file: str,
         c.echo("Drawing blocks...")
         blocks = Image.new("RGBA", (world.size.x, world.size.y))
         draw = ImageDraw.Draw(blocks)
-		i=0
+	i=0
         with c.progressbar(max_value = world.size.x*world.size.y) as bar:
             for x in range(world.size.x):
                 for y in range(world.size.y):
@@ -177,7 +177,7 @@ def flyingsnake(input_file: str,
         c.echo("Drawing wires...")
         wires = Image.new("RGBA", (world.size.x, world.size.y))
         draw = ImageDraw.Draw(wires)
-		i=0
+	i=0
         with c.progressbar(max_value = world.size.x*world.size.y) as bar:
             for x in range(world.size.x):
                 for y in range(world.size.y):
