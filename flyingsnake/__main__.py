@@ -9,12 +9,10 @@ DEFAULT_COORDS = -1
 
 
 def get_region_size(*, world, min_x, min_y, region_width, region_height):
-    if min_x == DEFAULT_COORDS or min_y == DEFAULT_COORDS:
-        return 0, 0, world.size.x, world.size.y
-    min_x = max(0, min_x)
-    min_y = max(0, min_y)
-    max_x = min(world.size.x, min_x + region_width)
-    max_y = min(world.size.y, min_y + region_height)
+    min_x = max(0, min_x or 0)
+    min_y = max(0, min_y or 0)
+    max_x = min(world.size.x, (min_x or world.size.x) + region_width)
+    max_y = min(world.size.y, (min_y or world.size.y) + region_height)
     return min_x, min_y, max_x, max_y
 
 
@@ -36,13 +34,13 @@ def get_region_size(*, world, min_x, min_y, region_width, region_height):
 @c.option("--paint/--no-paint", "draw_paint",
           help="Draw painted blocks with the paint color overlayed on them.", default=True)
 @c.option("-x", "--x_coord", "min_x",
-          help="Min x coord for custom world rendering", default=DEFAULT_COORDS)
+          help="Min x coord for custom world rendering", default=None)
 @c.option("-y", "--y_coord", "min_y",
-          help="Min y coord for custom world rendering", default=DEFAULT_COORDS)
+          help="Min y coord for custom world rendering", default=None)
 @c.option("-w", "--region_width", "region_width",
-          help="Width of region for custom world rendering", default=DEFAULT_REGION_VALUE)
+          help="Width of region for custom world rendering", default=None)
 @c.option("-h", "--region_height", "region_height",
-          help="Height of region for custom world rendering", default=DEFAULT_REGION_VALUE)
+          help="Height of region for custom world rendering", default=None
 def flyingsnake(input_file: str,
                 output_file: str,
                 colors_file: str,
@@ -123,13 +121,9 @@ def flyingsnake(input_file: str,
 
     c.echo("Parsing world...")
     world = li.World.create_from_file(input_file)
-    if (min_x != DEFAULT_COORDS or min_y != DEFAULT_COORDS
-        or region_height != DEFAULT_REGION_VALUE or region_width != DEFAULT_REGION_VALUE):
-        min_x, min_y, max_x, max_y = get_region_size(world=world, min_x=min_x, min_y=min_y,
-                                                     region_width=region_width, region_height=region_height)
-        c.echo(f"Only rendering world coordinates ({min_x}, {min_y}) to ({max_x}, {max_y}")
-    else:
-        min_x, min_y, max_x, max_y = 0, 0, world.size.x, world.size.y
+    min_x, min_y, max_x, max_y = get_region_size(world=world, min_x=min_x, min_y=min_y,
+                                                 region_width=region_width, region_height=region_height)
+    c.echo(f"Rendering world coordinates between ({min_x}, {min_y}) to ({max_x}, {max_y}")
     width = max_x - min_x
     height = max_y - min_y
     if draw_background:
