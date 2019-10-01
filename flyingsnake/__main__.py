@@ -128,8 +128,8 @@ def flyingsnake(input_file: str,
                             color = tuple(colors["Walls"][str(tile.wall.type.value)])
                         draw.point((x, y), color)
                     bar.update(i+1)
-				    i = i+1
-		del draw
+	            i = i+1
+	del draw
         to_merge.append(walls)
 
     if draw_liquids:
@@ -148,8 +148,8 @@ def flyingsnake(input_file: str,
                             draw.point((x, y), tuple(colors["Globals"]["Lava"]))
                         elif tile.liquid.type == li.tiles.LiquidType.HONEY:
                             draw.point((x, y), tuple(colors["Globals"]["Honey"]))
-					bar.update(i+1)
-				    i = i+1
+		    bar.update(i+1)
+	       	    i = i+1
         del draw
         to_merge.append(liquids)
 
@@ -168,8 +168,8 @@ def flyingsnake(input_file: str,
                         else:
                             color = tuple(colors["Blocks"][str(tile.block.type.value)])
                         draw.point((x, y), color)
-					bar.update(i+1)
-				    i = i+1
+		    bar.update(i+1)
+		    i = i+1
         del draw
         to_merge.append(blocks)
 
@@ -191,8 +191,8 @@ def flyingsnake(input_file: str,
                             draw.point((x, y), tuple(colors["Globals"]["Wire2"]))
                         if tile.wiring.yellow:
                             draw.point((x, y), tuple(colors["Globals"]["Wire3"]))
-					bar.update(i+1)
-				    i = i+1
+		    bar.update(i+1)
+		    i = i+1
         del draw
         to_merge.append(wires)
 
