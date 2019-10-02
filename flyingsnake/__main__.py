@@ -4,9 +4,6 @@ import json
 from PIL import Image, ImageDraw
 from .default_colors import DEFAULT_COLORS
 
-DEFAULT_REGION_VALUE = 1_000_000
-DEFAULT_COORDS = -1
-
 
 def get_region_size(*, world, min_x, min_y, region_width, region_height):
     min_x = max(0, min_x or 0)
