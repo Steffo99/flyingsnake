@@ -116,7 +116,7 @@ def flyingsnake(input_file: str,
         c.echo("Drawing walls...")
         walls = Image.new("RGBA", (world.size.x, world.size.y))
         draw = ImageDraw.Draw(walls)
-	i = 0
+	    i = 0
         with c.progressbar(max_value = world.size.x*world.size.y) as bar:
             for x in range(world.size.x):
                 for y in range(world.size.y):
@@ -128,15 +128,15 @@ def flyingsnake(input_file: str,
                             color = tuple(colors["Walls"][str(tile.wall.type.value)])
                         draw.point((x, y), color)
                     bar.update(i+1)
-	            i = i+1
-	del draw
+	                i = i+1
+	    del draw
         to_merge.append(walls)
 
     if draw_liquids:
         c.echo("Drawing liquids...")
         liquids = Image.new("RGBA", (world.size.x, world.size.y))
         draw = ImageDraw.Draw(liquids)
-	i=0
+	    i=0
         with c.progressbar(max_value = world.size.x*world.size.y) as bar:
             for x in range(world.size.x):
                 for y in range(world.size.y):
@@ -148,8 +148,8 @@ def flyingsnake(input_file: str,
                             draw.point((x, y), tuple(colors["Globals"]["Lava"]))
                         elif tile.liquid.type == li.tiles.LiquidType.HONEY:
                             draw.point((x, y), tuple(colors["Globals"]["Honey"]))
-		    bar.update(i+1)
-	       	    i = i+1
+		            bar.update(i+1)
+	       	        i = i+1
         del draw
         to_merge.append(liquids)
 
@@ -157,7 +157,7 @@ def flyingsnake(input_file: str,
         c.echo("Drawing blocks...")
         blocks = Image.new("RGBA", (world.size.x, world.size.y))
         draw = ImageDraw.Draw(blocks)
-	i=0
+	    i=0
         with c.progressbar(max_value = world.size.x*world.size.y) as bar:
             for x in range(world.size.x):
                 for y in range(world.size.y):
@@ -168,8 +168,8 @@ def flyingsnake(input_file: str,
                         else:
                             color = tuple(colors["Blocks"][str(tile.block.type.value)])
                         draw.point((x, y), color)
-		    bar.update(i+1)
-		    i = i+1
+		            bar.update(i+1)
+		            i = i+1
         del draw
         to_merge.append(blocks)
 
@@ -177,7 +177,7 @@ def flyingsnake(input_file: str,
         c.echo("Drawing wires...")
         wires = Image.new("RGBA", (world.size.x, world.size.y))
         draw = ImageDraw.Draw(wires)
-	i=0
+	    i=0
         with c.progressbar(max_value = world.size.x*world.size.y) as bar:
             for x in range(world.size.x):
                 for y in range(world.size.y):
@@ -191,8 +191,8 @@ def flyingsnake(input_file: str,
                             draw.point((x, y), tuple(colors["Globals"]["Wire2"]))
                         if tile.wiring.yellow:
                             draw.point((x, y), tuple(colors["Globals"]["Wire3"]))
-		    bar.update(i+1)
-		    i = i+1
+		            bar.update(i+1)
+		            i = i+1
         del draw
         to_merge.append(wires)
 
