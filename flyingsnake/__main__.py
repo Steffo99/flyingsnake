@@ -30,13 +30,13 @@ def get_region_size(*, world, min_x, min_y, region_width, region_height):
           help="Draw the liquids present in the world.", default=None)
 @c.option("--paint/--no-paint", "draw_paint",
           help="Draw painted blocks with the paint color overlayed on them.", default=True)
-@c.option("-x", "--x_coord", "min_x",
+@c.option("-x", "--x_coord", "min_x", type=int,
           help="Min x coord for custom world rendering", default=None)
-@c.option("-y", "--y_coord", "min_y",
+@c.option("-y", "--y_coord", "min_y", type=int,
           help="Min y coord for custom world rendering", default=None)
-@c.option("-w", "--region_width", "region_width",
+@c.option("-w", "--region_width", "region_width", type=int,
           help="Width of region for custom world rendering", default=None)
-@c.option("-h", "--region_height", "region_height",
+@c.option("-h", "--region_height", "region_height", type=int,
           help="Height of region for custom world rendering", default=None)
 def flyingsnake(input_file: str,
                 output_file: str,
