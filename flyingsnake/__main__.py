@@ -1,15 +1,27 @@
 import click as c
 import lihzahrd as li
 import json
+import typing
 from PIL import Image, ImageDraw
 from .default_colors import DEFAULT_COLORS
 
 
-def get_region_size(*, world, min_x, min_y, region_width, region_height):
+def get_region_size(*,
+                    world: li.World,
+                    min_x: typing.Optional[int] = None,
+                    min_y: typing.Optional[int] = None,
+                    region_width: typing.Optional[int] = None,
+                    region_height: typing.Optional[int] = None):
     min_x = max(0, min_x or 0)
     min_y = max(0, min_y or 0)
-    max_x = min(world.size.x, (min_x or world.size.x) + region_width)
-    max_y = min(world.size.y, (min_y or world.size.y) + region_height)
+    if region_width:
+        max_x = min(world.size.x, (min_x or world.size.x) + region_width)
+    else:
+        max_x = world.size.x
+    if region_height:
+        max_y = min(world.size.y, (min_y or world.size.y) + region_height)
+    else:
+        max_y = world.size.y
     return min_x, min_y, max_x, max_y
 
 
@@ -117,7 +129,7 @@ def flyingsnake(input_file: str,
     to_merge = []
 
     c.echo("Parsing world...")
-    world = li.World.create_from_file(input_file)
+    world: li.World = li.World.create_from_file(input_file)
     min_x, min_y, max_x, max_y = get_region_size(world=world, min_x=min_x, min_y=min_y,
                                                  region_width=region_width, region_height=region_height)
     c.echo(f"Rendering world coordinates between ({min_x}, {min_y}) to ({max_x}, {max_y}")
