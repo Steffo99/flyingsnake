@@ -151,7 +151,7 @@ def flyingsnake(input_file: str,
         edge_of_rock = world.size.y - 192
         if max_y > world.cavern_level and min_y <= edge_of_rock:
             rock_y = min(edge_of_rock - min_y, height)
-            draw.rectangle(((0, curr_y), (width, edge_of_rock + 1)), tuple(colors["Globals"]["Rock"]))
+            draw.rectangle(((0, curr_y), (width, rock_y)), tuple(colors["Globals"]["Rock"]))
             curr_y = rock_y + 1
         if max_y > edge_of_rock:
             draw.rectangle(((0, curr_y), (width, height)), tuple(colors["Globals"]["Hell"]))
