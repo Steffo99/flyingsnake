@@ -1,0 +1,41 @@
+[tool.poetry]
+    name = "flyingsnake"
+    version = "2.0.0a1"
+    description = "A Terraria world map renderer"
+    authors = ["Stefano Pigozzi <ste.pigozzi@gmail.com>"]
+    license = "AGPL-3.0+"
+    readme = "README.md"
+    homepage = "https://github.com/Steffo99/flyingsnake"
+    classifiers = [
+        "Development Status :: 5 - Production/Stable",
+        "Environment :: Console",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python :: 3.7",
+        "License :: OSI Approved :: GNU Affero General Public License v3",
+        "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
+        "Topic :: Games/Entertainment",
+        "Topic :: Multimedia :: Graphics",
+        "Typing :: Typed"
+    ]
+
+# Library dependencies
+[tool.poetry.dependencies]
+    python = "^3.6"
+    click = "^7.0"
+    lihzahrd = "^2.0.0a1"
+    "Pillow" = "^6.1.0"
+
+# Development dependencies
+[tool.poetry.dev-dependencies]
+
+# Optional dependencies
+[tool.poetry.extras]
+
+# Scripts
+[tool.poetry.scripts]
+flyingsnake = 'flyingsnake.__main__:flyingsnake'
+
+# Used build system
+[build-system]
+    requires = ["poetry>=0.12"]
+    build-backend = "poetry.masonry.api"

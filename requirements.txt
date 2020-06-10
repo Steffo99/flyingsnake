@@ -1,4 +1,0 @@
-click>=7.0
-lihzahrd>=1.0b1
-Pillow>=6.1.0
-pytest>=5.1.3

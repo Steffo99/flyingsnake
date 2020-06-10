@@ -11,7 +11,7 @@ def get_block_colors_from_tedit_settings(tree: ElementTree) -> typing.Dict[int, 
 
     for block in root:
         id_ = block.attrib["Id"]
-        color = block.attrib["Color"]
+        color = block.attrib["Color"] if "color" in block.attrib else "#00000000"
         alpha, red, green, blue = ImageColor.getrgb(color)
         colors[id_] = red, green, blue, alpha
 
