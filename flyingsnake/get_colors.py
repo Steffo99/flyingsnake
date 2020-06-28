@@ -11,7 +11,7 @@ def get_block_colors_from_tedit_settings(tree: ElementTree) -> typing.Dict[int, 
 
     for block in root:
         id_ = block.attrib["Id"]
-        color = block.attrib["Color"] if "color" in block.attrib else "#00000000"
+        color = block.attrib["Color"] if "Color" in block.attrib else "#00000000"
         alpha, red, green, blue = ImageColor.getrgb(color)
         colors[id_] = red, green, blue, alpha
 
@@ -25,7 +25,7 @@ def get_wall_colors_from_tedit_settings(tree: ElementTree) -> typing.Dict[int, t
 
     for wall in root:
         id_ = wall.attrib["Id"]
-        color = wall.attrib["Color"]
+        color = wall.attrib["Color"] if "Color" in wall.attrib else "#00000000"
         alpha, red, green, blue = ImageColor.getrgb(color)
         colors[id_] = red, green, blue, alpha
 
@@ -39,7 +39,7 @@ def get_global_colors_from_tedit_settings(tree: ElementTree) -> typing.Dict[str,
 
     for g in root:
         name = g.attrib["Name"]
-        color = g.attrib["Color"]
+        color = g.attrib["Color"] if "Color" in g.attrib else "#00000000"
         alpha, red, green, blue = ImageColor.getrgb(color)
         colors[name] = red, green, blue, alpha
 
@@ -53,7 +53,7 @@ def get_paint_colors_from_tedit_settings(tree: ElementTree) -> typing.Dict[int, 
 
     for color in root:
         id_ = color.attrib["Id"]
-        color = color.attrib["Color"]
+        color = color.attrib["Color"] if "Color" in color.attrib else "#00000000"
         alpha, red, green, blue = ImageColor.getrgb(color)
         colors[id_] = red, green, blue, alpha
 

@@ -7,3 +7,5 @@ setup/
 build/
 venv/
 .venv/
+*.wld
+*.png

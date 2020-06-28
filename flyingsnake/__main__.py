@@ -143,19 +143,19 @@ def flyingsnake(input_file: str,
         curr_y = 0
         if min_y <= world.underground_level:
             sky_y = min(world.underground_level - min_y, height)
-            draw.rectangle(((0, curr_y), (width, sky_y)), tuple(colors["Globals"].get("Sky", (255, 0, 255, 255))))
+            draw.rectangle(((0, curr_y), (width, sky_y)), tuple(colors["Globals"].get("Sky", (0, 0, 0, 0))))
             curr_y = sky_y + 1
         if max_y > world.underground_level and min_y <= world.cavern_level:
             earth_y = min(world.cavern_level - min_y, height)
-            draw.rectangle(((0, curr_y), (width, earth_y)), tuple(colors["Globals"].get("Earth", (255, 0, 255, 255))))
+            draw.rectangle(((0, curr_y), (width, earth_y)), tuple(colors["Globals"].get("Earth", (0, 0, 0, 0))))
             curr_y = earth_y + 1
         edge_of_rock = world.size.y - 192
         if max_y > world.cavern_level and min_y <= edge_of_rock:
             rock_y = min(edge_of_rock - min_y, height)
-            draw.rectangle(((0, curr_y), (width, rock_y)), tuple(colors["Globals"].get("Rock", (255, 0, 255, 255))))
+            draw.rectangle(((0, curr_y), (width, rock_y)), tuple(colors["Globals"].get("Rock", (0, 0, 0, 0))))
             curr_y = rock_y + 1
         if max_y > edge_of_rock:
-            draw.rectangle(((0, curr_y), (width, height)), tuple(colors["Globals"].get("Hell", (255, 0, 255, 255))))
+            draw.rectangle(((0, curr_y), (width, height)), tuple(colors["Globals"].get("Hell", (0, 0, 0, 0))))
         del draw
         to_merge.append(background)
 
@@ -168,9 +168,9 @@ def flyingsnake(input_file: str,
                 tile = world.tiles[x, y]
                 if tile.wall:
                     if draw_paint and tile.wall.paint:
-                        color = tuple(colors["Paints"].get(str(tile.wall.paint), (255, 0, 255, 255)))
+                        color = tuple(colors["Paints"].get(str(tile.wall.paint), (0, 0, 0, 0)))
                     else:
-                        color = tuple(colors["Walls"].get(str(tile.wall.type.value), (255, 0, 255, 255)))
+                        color = tuple(colors["Walls"].get(str(tile.wall.type.value), (0, 0, 0, 0)))
                     draw.point((x - min_x, y - min_y), color)
             if not x % 100:
                 c.echo(f"{x} / {width} rows done")
@@ -186,11 +186,11 @@ def flyingsnake(input_file: str,
                 tile = world.tiles[x, y]
                 if tile.liquid:
                     if tile.liquid.type == le.LiquidType.WATER:
-                        color = tuple(colors["Globals"].get("Water", (255, 0, 255, 255)))
+                        color = tuple(colors["Globals"].get("Water", (0, 0, 0, 0)))
                     elif tile.liquid.type == le.LiquidType.LAVA:
-                        color = tuple(colors["Globals"].get("Lava", (255, 0, 255, 255)))
+                        color = tuple(colors["Globals"].get("Lava", (0, 0, 0, 0)))
                     elif tile.liquid.type == le.LiquidType.HONEY:
-                        color = tuple(colors["Globals"].get("Honey", (255, 0, 255, 255)))
+                        color = tuple(colors["Globals"].get("Honey", (0, 0, 0, 0)))
                     else:
                         continue
                     draw.point((x - min_x, y - min_y), color)
@@ -208,9 +208,9 @@ def flyingsnake(input_file: str,
                 tile = world.tiles[x, y]
                 if tile.block:
                     if draw_paint and tile.block.paint:
-                        color = tuple(colors["Paints"].get(str(tile.block.paint), (255, 0, 255, 255)))
+                        color = tuple(colors["Paints"].get(str(tile.block.paint), (0, 0, 0, 0)))
                     else:
-                        color = tuple(colors["Blocks"].get(str(tile.block.type.value), (255, 0, 255, 255)))
+                        color = tuple(colors["Blocks"].get(str(tile.block.type.value), (0, 0, 0, 0)))
                     draw.point((x - min_x, y - min_y), color)
             if not x % 100:
                 c.echo(f"{x} / {width} rows done")
@@ -226,13 +226,13 @@ def flyingsnake(input_file: str,
                 tile = world.tiles[x, y]
                 if tile.wiring:
                     if tile.wiring.red:
-                        color = tuple(colors["Globals"].get("Wire", (255, 0, 255, 255)))
+                        color = tuple(colors["Globals"].get("Wire", (0, 0, 0, 0)))
                     elif tile.wiring.blue:
-                        color = tuple(colors["Globals"].get("Wire1", (255, 0, 255, 255)))
+                        color = tuple(colors["Globals"].get("Wire1", (0, 0, 0, 0)))
                     elif tile.wiring.green:
-                        color = tuple(colors["Globals"].get("Wire2", (255, 0, 255, 255)))
+                        color = tuple(colors["Globals"].get("Wire2", (0, 0, 0, 0)))
                     elif tile.wiring.yellow:
-                        color = tuple(colors["Globals"].get("Wire3", (255, 0, 255, 255)))
+                        color = tuple(colors["Globals"].get("Wire3", (0, 0, 0, 0)))
                     else:
                         continue
                     draw.point((x - min_x, y - min_y), color)
