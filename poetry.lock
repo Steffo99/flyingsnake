@@ -12,7 +12,7 @@ description = "A Terraria world parser in Python"
 name = "lihzahrd"
 optional = false
 python-versions = ">=3.6,<4.0"
-version = "2.0.0a1"
+version = "2.0.0"
 
 [[package]]
 category = "main"
@@ -23,7 +23,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 version = "6.2.2"
 
 [metadata]
-content-hash = "5ea328722a25ebd42b3ccd900143ad2db3c94feda34c89cc5e680add291dbeb5"
+content-hash = "3d375081e6efdd313c0d15b4cb8c70e9c7f0b06d5aacc5ea70bbc6a13e973bd2"
     python-versions = "^3.6"
 
 [metadata.files]
@@ -32,8 +32,8 @@ click = [
     {file = "click-7.1.2.tar.gz", hash = "sha256:d2b5255c7c6349bc1bd1e59e08cd12acbbd63ce649f2588755783aa94dfb6b1a"},
 ]
 lihzahrd = [
-    {file = "lihzahrd-2.0.0a1-py3-none-any.whl", hash = "sha256:facda1e2e68d5d940183cc33dd0fc52840a7ec38a69ba7e5997553ff3360da9a"},
-    {file = "lihzahrd-2.0.0a1.tar.gz", hash = "sha256:aed5e196ca9cb7c11ef559f3fc398f40c5c5001e6492a73c1ea5c19125ec1c2d"},
+    {file = "lihzahrd-2.0.0-py3-none-any.whl", hash = "sha256:c3679979b6fea54e253b9528423d4c19ba0a82a7423a675a67363df5f293cd72"},
+    {file = "lihzahrd-2.0.0.tar.gz", hash = "sha256:33b19e61365ef0c274c3b5a5132e10da8fda92d2ea95095ca237e6e2e65646af"},
 ]
 pillow = [
     {file = "Pillow-6.2.2-cp27-cp27m-macosx_10_6_intel.whl", hash = "sha256:834dd023b7f987d6b700ad93dc818098d7eb046bd445e9992b3093c6f9d7a95f"},
