@@ -1,6 +1,6 @@
 [tool.poetry]
     name = "flyingsnake"
-    version = "2.0.0a3"
+    version = "3.0.0"
     description = "A Terraria world map renderer"
     authors = ["Stefano Pigozzi <ste.pigozzi@gmail.com>"]
     license = "AGPL-3.0+"
@@ -20,9 +20,9 @@
 
 # Library dependencies
 [tool.poetry.dependencies]
-    python = "^3.6"
+    python = "^3.6.2"
     click = "^7.0"
-    lihzahrd = "^2.0.0"
+    lihzahrd = "^3.0.1"
     "Pillow" = "^6.1.0"
 
 # Development dependencies

@@ -191,6 +191,8 @@ def flyingsnake(input_file: str,
                         color = tuple(colors["Globals"].get("Lava", (0, 0, 0, 0)))
                     elif tile.liquid.type == le.LiquidType.HONEY:
                         color = tuple(colors["Globals"].get("Honey", (0, 0, 0, 0)))
+                    elif tile.liquid.type == le.LiquidType.SHIMMER:
+                        color = tuple(colors["Globals"].get("Shimmer", (0, 0, 0, 0)))
                     else:
                         continue
                     draw.point((x - min_x, y - min_y), color)
