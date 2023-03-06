@@ -1,4 +1,4 @@
-# ![](https://gamepedia.cursecdn.com/terraria_gamepedia/8/82/Flying_Snake.png?version=2b0351f579d721166af80a12d2c2e325) `flyingsnake` [![](https://img.shields.io/pypi/v/flyingsnake)](https://pypi.org/project/flyingsnake/) ![](https://img.shields.io/badge/maintenance-passively--maintained-yellowgreen)
+# ![](https://gamepedia.cursecdn.com/terraria_gamepedia/8/82/Flying_Snake.png?version=2b0351f579d721166af80a12d2c2e325) `flyingsnake` [![](https://img.shields.io/pypi/v/flyingsnake)](https://pypi.org/project/flyingsnake/)
 
 Render Terraria world maps with this easy to use command line utility!
 
