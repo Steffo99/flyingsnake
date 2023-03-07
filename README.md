@@ -30,6 +30,12 @@ python3.7 -m pip install flyingsnake --upgrade
 
 ## Usage
 
+> **Warning**
+> 
+> Loading maliciously designed Terraria worlds can drain system resources, crash the interpreter, or possibly do more evil things!
+> 
+> **Make sure you trust the worlds you are rendering!**
+
 To create a world map image named `Output.png` from the `Small_Example.wld` file present in your current working directory, run in your terminal:
 
 ```bash
