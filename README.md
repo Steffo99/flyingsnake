@@ -1,6 +1,18 @@
-# ![](https://gamepedia.cursecdn.com/terraria_gamepedia/8/82/Flying_Snake.png?version=2b0351f579d721166af80a12d2c2e325) `flyingsnake` [![](https://img.shields.io/pypi/v/flyingsnake)](https://pypi.org/project/flyingsnake/)
+<div align="center">
 
-Render Terraria world maps with this easy to use command line utility!
+![](.media/icon-128x128_round.png)
+
+# Flyingsnake
+
+CLI Terraria world map renderer
+
+</div>
+
+## Links
+
+[![Available on PyPI](https://img.shields.io/pypi/v/flyingsnake)](https://pypi.org/project/flyingsnake/)
+
+## Screenshots
 
 ![flyingsnake Small_Example.wld Output.png](https://i.imgur.com/HtNEIKw.png)
 
@@ -9,8 +21,6 @@ Render Terraria world maps with this easy to use command line utility!
 To use `flyingsnake`, you need [Python 3.7 or higher](https://www.python.org/downloads/) installed on your machine and inside your PATH.
 
 ## Installing
-
-`flyingsnake` is available on PyPI, so you can download it through `pip`. 
 
 ### Windows
 
